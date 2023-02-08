@@ -26,14 +26,14 @@ class Bils(pygame.sprite.Sprite):
             self.spritesPulo.append(pygame.image.load(f"sprite/hashirama/pulo/{i}.png"))
 
         self.spritesEspecial = []
-        for i in range(1, 5):
+        for i in range(1, 6):
             self.spritesEspecial.append(pygame.image.load(f"sprite/bils/especial/{i}.png"))
 
         self.atual = 0
         self.image = self.spritesParado[self.atual]
         self.__redmensionaSprite()
 
-        self.rect = pygame.Rect(50, self.__ground, 100, 100)
+        self.rect = pygame.Rect(720, self.__ground, 100, 100)
         self.__x_velocidade = 0
         self.__y_velocidade = 0
 
@@ -134,7 +134,7 @@ class Bils(pygame.sprite.Sprite):
 
     def __exibeAnimacaoEspecial(self):
         if self.__animacaoEspecial == True:
-            self.atual += 0.1
+            self.atual += 0.25
 
             if self.atual >= len(self.spritesEspecial):
                 self.atual = 0
@@ -145,8 +145,7 @@ class Bils(pygame.sprite.Sprite):
                 self.__animacaoEspecial = False
 
             self.image = self.spritesEspecial[int(self.atual)]
-
-            self.__redmensionaSprite()
+            self.image = pygame.transform.scale(self.image, [621 /4, 716 /4])
 
 
     def aceleraDireita(self):
