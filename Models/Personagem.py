@@ -34,12 +34,12 @@ class Personagem(pygame.sprite.Sprite):
                 self.atual += 1
                 if self.atual >= len(self.spritesParado):
                     self.atual = 0
-                    self.image = self.spritesParado[6]
-                    self.image = pygame.transform.scale(self.image, [36 * 2, 84 * 2])
+                    self.image = self.spritesParado[indice_parado]
+                    self.image = pygame.transform.scale(self.image, [self.rect.x * 2, self.rect.y * 2])
 
                     self.__ultima = True
                     self.__animacaoParado = False
 
                 if not self.__ultima:
                     self.image = self.spritesParado[int(self.atual)]
-                    self.image = pygame.transform.scale(self.image, [36 * 2, 84 * 2])
+                    self.image = pygame.transform.scale(self.image, [self.rect.x * 2, self.rect.y * 2])
