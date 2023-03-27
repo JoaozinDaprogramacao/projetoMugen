@@ -1,51 +1,26 @@
 import pygame
+from Personagem import Personagem
 
-
-
-
-
-class Hashirama(pygame.sprite.Sprite):
+class Hashirama(Personagem):
     def __init__(self, *groups):
-        super().__init__(*groups)
+        super().__init__(*groups, indice_parado=6)
         self.__ground = 270
 
-        self.spritesParado = []
         for i in range(1, 8):
             self.spritesParado.append(pygame.image.load(f"sprite/hashirama/parado/{i}.png"))
 
-        self.spritesAtaque1 = []
         for i in range(1, 6):
             self.spritesAtaque1.append(pygame.image.load(f"sprite/hashirama/ataque1/{i}.png"))
 
-        self.spritesCorrendo = []
         for i in range(1, 7):
             self.spritesCorrendo.append(pygame.image.load(f"sprite/hashirama/correndo/{i}.png"))
 
-        self.spritesPulo = []
         for i in range(3, 7):
             self.spritesPulo.append(pygame.image.load(f"sprite/hashirama/pulo/{i}.png"))
 
-        self.spritesEspecial = []
         for i in range(1, 25):
             self.spritesEspecial.append(pygame.image.load(f"sprite/hashirama/especial/{i}.png"))
 
-        self.atual = 0
-        self.image = self.spritesParado[self.atual]
-        self.image = pygame.transform.scale(self.image, [36*2, 84*2])
-
-        self.rect = pygame.Rect(50, self.__ground, 100, 100)
-        self.__x_velocidade = 0
-        self.__y_velocidade = 0
-
-
-
-        self.__animacaoParado = True
-        self.__animacaoAtaque1 = False
-        self.__animacaoCorrendo = False
-        self.__animacaoCorrendoE = False
-        self.__animacaoPulo = False
-        self.__animacaoEspecial = False
-        self.__ultima = False
 
     def update(self, *args):
         if self.rect.x <= 740 or self.rect.x >= 0:
