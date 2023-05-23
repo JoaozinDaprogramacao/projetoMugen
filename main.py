@@ -1,8 +1,6 @@
 import pygame
 from Models.Hashirama import Hashirama
-from Models.Bils import Bils
 from Models.life import Life
-
 
 pygame.init()
 display = pygame.display.set_mode([840, 480])
@@ -11,8 +9,9 @@ pygame.display.set_caption("Meu Game")
 drawGroup = pygame.sprite.Group()
 
 life = Life(drawGroup)
+
 p1 = Hashirama(drawGroup)
-p2 = Bils(drawGroup)
+
 
 background = pygame.image.load("sprite/hCUwLQ.png")
 
@@ -44,44 +43,17 @@ if __name__ == "__main__":
                     if not (keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]):
                         p1.ataqueEspecial()
 
-
                 if event.key == pygame.K_SPACE:
                     keys = pygame.key.get_pressed()
                     if not (keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]):
                         p1.pula()
 
-
-                #*-*-*-*-* p2 *-*-*--*
-
-                if event.key == pygame.K_d:
-                   p2.corre()
-
-                if event.key == pygame.K_a:
-                    p2.correE()
-
-                if event.key == pygame.K_j:
-                    p2.ataque1()
-
-
-
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
-                    p1.desacelera()
-                    p1.paraDeCorrerE()
+                   p1.paraDeCorrer()
 
                 if event.key == pygame.K_LEFT:
-                    p1.desacelera()
-                    p1.paraDeCorrer()
-
-                #*-**-*-*-* p2 *-*-**-*-*-*
-                if event.key == pygame.K_d:
-                    p2.desacelera()
-                    p2.paraDeCorrerE()
-
-                if event.key == pygame.K_a:
-                    p2.desacelera()
-                    p2.paraDeCorrer()
-
+                    p1.paraDeCorrerE()
 
         drawGroup.update()
         drawGroup.draw(display)
