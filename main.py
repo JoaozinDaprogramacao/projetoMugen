@@ -1,6 +1,7 @@
 import pygame
 from Models.Hashirama import Hashirama
 from Models.life import Life
+from janelaEscolhePersonagem import Window
 
 pygame.init()
 display = pygame.display.set_mode([840, 480])
@@ -19,6 +20,7 @@ relogio = pygame.time.Clock()
 gameLoop = True
 
 if __name__ == "__main__":
+    Window()
     while gameLoop:
         relogio.tick(30)
         display.blit(background, [0, 0])
