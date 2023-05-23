@@ -1,6 +1,7 @@
 import pygame
 from Models.Hashirama import Hashirama
 from Models.life import Life
+from janelaEscolhePersonagem import Window
 from time import sleep
 
 
@@ -16,6 +17,9 @@ def anima_entrada(faixa_x, faixa_y, anima_entrada_value, velocidade, preto, disp
 
 
     return faixa_x, anima_entrada_value
+
+
+
 
 
 pygame.init()
@@ -47,6 +51,7 @@ velocidade = 5
 anima_entrada_value = True
 
 if __name__ == "__main__":
+    Window()
     while gameLoop:
         relogio.tick(30)
         display.blit(background, [0, 0])
