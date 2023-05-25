@@ -5,7 +5,7 @@ from janelaEscolhePersonagem import Window
 
 pygame.init()
 display = pygame.display.set_mode([840, 480])
-pygame.display.set_caption("Meu Game")
+pygame.display.set_caption("projeto mugen")
 
 drawGroup = pygame.sprite.Group()
 
