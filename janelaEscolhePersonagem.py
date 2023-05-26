@@ -23,6 +23,7 @@ class Window:
         self.sasuke.rect = self.sasuke.image.get_rect(topleft=(170, 50))
         self.drawGroup.add(self.sasuke)
 
+
         self.personagem_selecionado = None
         self.running = True
 
@@ -61,5 +62,5 @@ class Window:
 
         pygame.quit()
 
-JANELA = Window()
-JANELA.run()
+
+Window().run()
