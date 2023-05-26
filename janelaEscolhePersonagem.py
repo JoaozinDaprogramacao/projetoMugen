@@ -1,13 +1,14 @@
 import pygame
-
+from abstracoes.personagens.logicaEscolha import Logica_Escolha
+from enums.PersonagensEnum import PersonagensEnum
 
 class Window:
-    def __init__(self):
+    def __init__(self, logica):
         pygame.init()
         self.window = pygame.display.set_mode((840, 480))
         self.drawGroup = pygame.sprite.Group()
 
-
+        self.__logica: Logica_Escolha = logica
         self.hashirama = pygame.sprite.Sprite()
         self.hashirama.image = pygame.image.load("sprite/selecaoPersonagem/hash.jpg")
         self.hashirama.image = pygame.transform.scale(self.hashirama.image, (self.hashirama.image.get_width() // 9,
@@ -24,26 +25,25 @@ class Window:
         self.drawGroup.add(self.sasuke)
 
 
-        self.personagem_selecionado = None
         self.running = True
 
     def indicador_personagem(self):
-        if self.personagem_selecionado == "Hashirama":
+        if self.__logica.get_escolha() == PersonagensEnum.Hashirama.value:
             indicator_rect = self.hashirama.rect.inflate(10, 10)
             pygame.draw.rect(self.window, (255, 0, 0), indicator_rect, 3)
-        elif self.personagem_selecionado == "Sasuke":
+        elif self.__logica.get_escolha() == PersonagensEnum.Sasuke.value:
             indicator_rect = self.sasuke.rect.inflate(10, 10)
             pygame.draw.rect(self.window, (255, 0, 0), indicator_rect, 3)
 
     def teclas_input(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
-            self.personagem_selecionado = "Hashirama"
+            self.__logica.set_escolha(PersonagensEnum.Hashirama.value)
         elif keys[pygame.K_RIGHT]:
-            self.personagem_selecionado = "Sasuke"
+            self.__logica.set_escolha(PersonagensEnum.Sasuke.value)
         elif keys[pygame.K_RETURN]:
-            if self.personagem_selecionado:
-                print("Personagem selecionado:", self.personagem_selecionado)
+            if self.__logica.get_escolha():
+                print("Personagem selecionado:", self.__logica.get_escolha())
                 self.running = False
 
     def run(self):
@@ -59,8 +59,3 @@ class Window:
             self.drawGroup.draw(self.window)
             self.indicador_personagem()
             pygame.display.update()
-
-        pygame.quit()
-
-
-Window().run()

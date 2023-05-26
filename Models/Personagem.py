@@ -5,6 +5,7 @@ class Personagem(pygame.sprite.Sprite):
     def __init__(self, indice_parado, sprites_parado, sprites_ataque, sprites_correndo, sprites_pulo, sprites_especial, ground, *groups):
         super().__init__(*groups)
         self.__indice_parado = indice_parado
+        print(f"indice parado: {self.__indice_parado}")
         self.__ground = ground
         self.spritesParado = sprites_parado
         self.spritesAtaque1 = sprites_ataque
@@ -15,7 +16,6 @@ class Personagem(pygame.sprite.Sprite):
         self.atual = 0
         self.image = self.spritesParado[self.atual]
         self.rect = self.image.get_rect()
-        self.image = pygame.transform.scale(self.image, [self.rect.x * 2, self.rect.y * 2])
 
         self.rect = pygame.Rect(50, self.__ground, 100, 100)
         self.__x_velocidade = 0
@@ -53,20 +53,18 @@ class Personagem(pygame.sprite.Sprite):
             if self.atual >= len(self.spritesParado):
                 self.atual = 0
                 self.image = self.spritesParado[self.__indice_parado]
-                self.image = pygame.transform.scale(self.image, [36 * 2, 84 * 2])
 
                 self.__ultima = True
                 self.__animacaoParado = False
 
             if not self.__ultima:
                 self.image = self.spritesParado[int(self.atual)]
-                self.image = pygame.transform.scale(self.image, [36 * 2, 84 * 2])
 
 
 
     def __exibeAnimacaoAtaque1(self):
         if self.__animacaoAtaque1 == True:
-            self.atual += 0.4
+            self.atual += 0.2
             self.__x_velocidade = 3
             if self.atual >= len(self.spritesAtaque1):
                 self.atual = 0
@@ -76,29 +74,25 @@ class Personagem(pygame.sprite.Sprite):
                 self.__animacaoParado = True
                 self.__ultima = False
             self.image = self.spritesAtaque1[int(self.atual)]
-            self.image = pygame.transform.scale(self.image, [36 * 2, 84 * 2])
+
+    def animar_correndo(self):
+        self.atual += 0.2
+        if self.atual >= len(self.spritesCorrendo):
+            self.atual = 0
+
+        self.image = self.spritesCorrendo[int(self.atual)]
 
     def __exibeAnimacaoCorrendo(self):
-        if self.__animacaoCorrendo == True:
-            self.atual += 1
+        if self.__animacaoCorrendo:
             self.aceleraDireita()
-            if self.atual >= len(self.spritesCorrendo):
-                self.atual = 0
-
-            self.image = self.spritesCorrendo[int(self.atual)]
-            self.image = pygame.transform.scale(self.image, [36 * 2, 84 * 2])
-
+            self.animar_correndo()
+            self.image = pygame.transform.flip(self.image, True, False)
+            self.image = pygame.transform.flip(self.image, True, False)
 
     def __exibeAnimacaoCorrendoE(self):
-        if self.__animacaoCorrendoE == True:
-            print("aqui")
-            self.atual += 1
+        if self.__animacaoCorrendoE:
             self.aceleraEsquerda()
-            if self.atual >= len(self.spritesCorrendo):
-                self.atual = 0
-
-            self.image = self.spritesCorrendo[int(self.atual)]
-            self.image = pygame.transform.scale(self.image, [36 * 2, 84 * 2])
+            self.animar_correndo()
             self.image = pygame.transform.flip(self.image, True, False)
 
     def __exibeAnimacaoPulo(self):
@@ -114,7 +108,6 @@ class Personagem(pygame.sprite.Sprite):
                 self.__animacaoPulo = False
 
             self.image = self.spritesPulo[int(self.atual)]
-            self.image = pygame.transform.scale(self.image, [36 * 2, 84 * 2])
 
     def __exibeAnimacaoEspecial(self):
         if self.__animacaoEspecial == True:
@@ -131,13 +124,12 @@ class Personagem(pygame.sprite.Sprite):
                 self.__animacaoEspecial = False
 
             self.image = self.spritesEspecial[int(self.atual)]
-            self.image = pygame.transform.scale(self.image, [36 * 2, 84 * 2])
 
     def aceleraDireita(self):
-        self.__x_velocidade = 7
+        self.__x_velocidade = 5
 
     def aceleraEsquerda(self):
-        self.__x_velocidade = -7
+        self.__x_velocidade = -5
 
     def desacelera(self):
         self.__x_velocidade = 0
