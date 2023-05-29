@@ -28,14 +28,6 @@ faixa_y = 140
 
 velocidade = 10
 
-img_p1_selec = pygame.image.load("sprite/selecaoPersonagem/hashirama/FundoHashirama.jfif")
-img_p1_selec = pygame.transform.scale(img_p1_selec, (img_p1_selec.get_width() // 6,
-                                                     img_p1_selec.get_height() // 6))
-
-img_p2_selec = pygame.image.load("sprite/selecaoPersonagem/bills/FundoBills.jpg")
-img_p2_selec = pygame.transform.scale(img_p2_selec, (img_p2_selec.get_width() // 6,
-                                                     img_p2_selec.get_height() // 6))
-
 anima_entrada_value = True
 
 if __name__ == "__main__":
@@ -44,6 +36,17 @@ if __name__ == "__main__":
     janelaEscola.run()
 
     p1 = logica.get_p1()
+
+    endereco_p1, endereco_p2 = logica.get_logs_p1_p2()
+
+    img_p1_selec = pygame.image.load(endereco_p1)
+    img_p1_selec = pygame.transform.scale(img_p1_selec, (img_p1_selec.get_width() // 6,
+                                                         img_p1_selec.get_height() // 6))
+
+    img_p2_selec = pygame.image.load(endereco_p2)
+    img_p2_selec = pygame.transform.scale(img_p2_selec, (img_p2_selec.get_width() // 6,
+                                                         img_p2_selec.get_height() // 6))
+
 
     if p1 == None:
         exit()

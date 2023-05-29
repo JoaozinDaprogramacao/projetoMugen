@@ -29,3 +29,17 @@ class Logica_Escolha:
                 self.__p1 = Bils(self.__drawGroup)
 
             return self.__p1
+
+    def get_logs_p1_p2(self):
+        if self.__press_enter:
+            p1 = ""
+            p2 = ""
+            if self.__escolha == PersonagensEnum.Hashirama.value:
+                p1 = "sprite/selecaoPersonagem/hashirama/FundoHashirama.jfif"
+                p2 = "sprite/selecaoPersonagem/bills/FundoBills.jpg"
+
+            elif self.__escolha == PersonagensEnum.Sasuke.value:
+                p2 = "sprite/selecaoPersonagem/hashirama/FundoHashirama.jfif"
+                p1 = "sprite/selecaoPersonagem/bills/FundoBills.jpg"
+
+            return p1, p2
