@@ -3,12 +3,10 @@ from Models.Personagem import Personagem
 
 class Hashirama(Personagem):
     def __transforma_mult(self, indice, image):
-        return pygame.transform.scale(image,
-                               (image.get_width() * indice, image.get_height() * indice))
+        return pygame.transform.scale(image, (image.get_width() * indice, image.get_height() * indice))
 
     def __transforma_div(self, indice, image):
-        return pygame.transform.scale(image,
-                               (image.get_width() / indice, image.get_height() / indice))
+        return pygame.transform.scale(image, (image.get_width() / indice, image.get_height() / indice))
     def __init__(self, *groups):
 
         self.__indice = 2

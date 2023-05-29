@@ -28,14 +28,13 @@ faixa_y = 140
 
 velocidade = 10
 
-img_p1 = pygame.image.load("sprite/selecaoPersonagem/hash.jpg")
-img_p1 = pygame.transform.scale(img_p1, (img_p1.get_width() // 9,
-                                           img_p1.get_height() // 9))
+img_p1_selec = pygame.image.load("sprite/selecaoPersonagem/hashirama/FundoHashirama.jfif")
+img_p1_selec = pygame.transform.scale(img_p1_selec, (img_p1_selec.get_width() // 6,
+                                                     img_p1_selec.get_height() // 6))
 
-
-img_p2 = pygame.image.load("sprite/selecaoPersonagem/sasuke.jfif")
-img_p2 = pygame.transform.scale(img_p2, (img_p2.get_width() // 9,
-                                           img_p2.get_height() // 9))
+img_p2_selec = pygame.image.load("sprite/selecaoPersonagem/bills/FundoBills.jpg")
+img_p2_selec = pygame.transform.scale(img_p2_selec, (img_p2_selec.get_width() // 6,
+                                                     img_p2_selec.get_height() // 6))
 
 anima_entrada_value = True
 
@@ -87,7 +86,8 @@ if __name__ == "__main__":
                         p1.paraDeCorrerE()
 
         faixa_x, anima_entrada_value = anima_entrada(faixa_x, faixa_y,
-                                anima_entrada_value, velocidade, preto, display, img_p1, img_p2)
+                                                     anima_entrada_value, velocidade, preto, display,
+                                                     img_p1_selec, img_p2_selec)
 
         drawGroup.update()
         drawGroup.draw(display)
