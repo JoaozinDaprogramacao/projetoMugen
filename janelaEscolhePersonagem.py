@@ -88,6 +88,7 @@ class Window:
         elif keys[pygame.K_RETURN]:
             if self.__logica.get_escolha():
                 print("Personagem selecionado:", self.__logica.get_escolha())
+                self.__logica.press_enter()
                 self.running = False
 
     def __desenha_display_escolha(self, p1_nome):
