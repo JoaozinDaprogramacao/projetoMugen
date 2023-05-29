@@ -1,7 +1,8 @@
 import pygame
-from Models.Personagem import Personagem
+from Models.personagens.Personagem_com_Projetil import Personagem_com_Projetil
+from Models.projeteis.Projeteis import Projetil
 
-class Hashirama(Personagem):
+class Hashirama(Personagem_com_Projetil):
     def __transforma_mult(self, indice, image):
         return pygame.transform.scale(image,
                                (image.get_width() * indice, image.get_height() * indice))
@@ -13,6 +14,7 @@ class Hashirama(Personagem):
 
         self.__indice = 2
 
+
         self.__ground = 295
         self.__indice_parado = 6
 
@@ -21,6 +23,8 @@ class Hashirama(Personagem):
         self.__spritesCorrendo = []
         self.__spritesPulo = []
         self.__spritesEspecial = []
+        self.__sprites_explosao = []
+
 
         for i in range(1, 8):
             image = pygame.image.load(f"sprite/hashirama/parado/{i}.png")
@@ -42,12 +46,20 @@ class Hashirama(Personagem):
             scaled_image = scaled_image = self.__transforma_mult(self.__indice, image)
             self.__spritesPulo.append(scaled_image)
 
-        for i in range(1, 24):
+        for i in range(1, 4):
             image = pygame.image.load(f"sprite/hashirama/especial/{i}.png")
             scaled_image = scaled_image = self.__transforma_mult(self.__indice, image)
             self.__spritesEspecial.append(scaled_image)
 
+        for i in range(4, 25):
+            image = pygame.image.load(f"sprite/hashirama/especial/{i}.png")
+            scaled_image = scaled_image = self.__transforma_mult(self.__indice, image)
+            self.__sprites_explosao.append(scaled_image)
 
-        super().__init__(self.__indice_parado, self.__spritesParado, self.__spritesAtaque1,
+        self.__projetil = Projetil(self.__sprites_explosao,
+                                   self.__ground, *groups)
+
+
+        super().__init__(self.__projetil, self.__indice_parado, self.__spritesParado, self.__spritesAtaque1,
                          self.__spritesCorrendo, self.__spritesPulo, self.__spritesEspecial,
                          self.__ground, *groups)
