@@ -1,6 +1,6 @@
 from enums.PersonagensEnum import PersonagensEnum
-from Models.Hashirama import Hashirama
-from Models.Bils import Bils
+from Models.personagens.Hashirama import Hashirama
+from Models.personagens.Bils import Bils
 
 
 class Logica_Escolha:

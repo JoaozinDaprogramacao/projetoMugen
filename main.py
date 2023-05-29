@@ -1,6 +1,6 @@
 import pygame
-from Models.life import Life
-from Models.Personagem import Personagem
+from Models.personagens.life import Life
+from Models.personagens.Personagem import Personagem
 from janelaEscolhePersonagem import Window
 from abstracoes.animacaoEntrada import anima_entrada
 from abstracoes.personagens.logicaEscolha import Logica_Escolha

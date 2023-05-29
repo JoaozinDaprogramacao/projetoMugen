@@ -21,12 +21,12 @@ class Personagem(pygame.sprite.Sprite):
         self.__x_velocidade = 0
         self.__y_velocidade = 0
 
-        self.__animacaoParado = True
-        self.__animacaoAtaque1 = False
-        self.__animacaoCorrendo = False
-        self.__animacaoCorrendoE = False
-        self.__animacaoPulo = False
-        self.__animacaoEspecial = False
+        self._animacaoParado = True
+        self._animacaoAtaque1 = False
+        self._animacaoCorrendo = False
+        self._animacaoCorrendoE = False
+        self._animacaoPulo = False
+        self._animacaoEspecial = False
         self.__ultima = False
 
 
@@ -40,38 +40,38 @@ class Personagem(pygame.sprite.Sprite):
             self.__y_velocidade = 0
 
 
-        self.__exibeAnimacaoParado()
-        self.__exibeAnimacaoAtaque1()
-        self.__exibeAnimacaoCorrendo()
-        self.__exibeAnimacaoCorrendoE()
-        self.__exibeAnimacaoPulo()
-        self.__exibeAnimacaoEspecial()
+        self._exibeAnimacaoParado()
+        self._exibeAnimacaoAtaque1()
+        self._exibeAnimacaoCorrendo()
+        self._exibeAnimacaoCorrendoE()
+        self._exibeAnimacaoPulo()
+        self._exibeAnimacaoEspecial()
 
-    def __exibeAnimacaoParado(self):
-        if self.__animacaoParado == True:
+    def _exibeAnimacaoParado(self):
+        if self._animacaoParado == True:
             self.atual += 1
             if self.atual >= len(self.spritesParado):
                 self.atual = 0
                 self.image = self.spritesParado[self.__indice_parado]
 
                 self.__ultima = True
-                self.__animacaoParado = False
+                self._animacaoParado = False
 
             if not self.__ultima:
                 self.image = self.spritesParado[int(self.atual)]
 
 
 
-    def __exibeAnimacaoAtaque1(self):
-        if self.__animacaoAtaque1 == True:
+    def _exibeAnimacaoAtaque1(self):
+        if self._animacaoAtaque1 == True:
             self.atual += 0.2
             self.__x_velocidade = 3
             if self.atual >= len(self.spritesAtaque1):
                 self.atual = 0
                 self.__x_velocidade = 0
 
-                self.__animacaoAtaque1 = False
-                self.__animacaoParado = True
+                self._animacaoAtaque1 = False
+                self._animacaoParado = True
                 self.__ultima = False
             self.image = self.spritesAtaque1[int(self.atual)]
 
@@ -82,21 +82,21 @@ class Personagem(pygame.sprite.Sprite):
 
         self.image = self.spritesCorrendo[int(self.atual)]
 
-    def __exibeAnimacaoCorrendo(self):
-        if self.__animacaoCorrendo:
+    def _exibeAnimacaoCorrendo(self):
+        if self._animacaoCorrendo:
             self.aceleraDireita()
             self.animar_correndo()
             self.image = pygame.transform.flip(self.image, True, False)
             self.image = pygame.transform.flip(self.image, True, False)
 
-    def __exibeAnimacaoCorrendoE(self):
-        if self.__animacaoCorrendoE:
+    def _exibeAnimacaoCorrendoE(self):
+        if self._animacaoCorrendoE:
             self.aceleraEsquerda()
             self.animar_correndo()
             self.image = pygame.transform.flip(self.image, True, False)
 
-    def __exibeAnimacaoPulo(self):
-        if self.__animacaoPulo == True:
+    def _exibeAnimacaoPulo(self):
+        if self._animacaoPulo == True:
             self.atual += 0.5
             self.__y_velocidade = -20
 
@@ -104,13 +104,13 @@ class Personagem(pygame.sprite.Sprite):
                 self.atual = 0
                 self.__y_velocidade = 0
 
-                self.__animacaoParado = True
-                self.__animacaoPulo = False
+                self._animacaoParado = True
+                self._animacaoPulo = False
 
             self.image = self.spritesPulo[int(self.atual)]
 
-    def __exibeAnimacaoEspecial(self):
-        if self.__animacaoEspecial == True:
+    def _exibeAnimacaoEspecial(self):
+        if self._animacaoEspecial == True:
             self.atual += 0.5
 
             if int(self.atual == 4):
@@ -120,8 +120,8 @@ class Personagem(pygame.sprite.Sprite):
                 self.atual = 0
                 self.__x_velocidade = 0
 
-                self.__animacaoParado = True
-                self.__animacaoEspecial = False
+                self._animacaoParado = True
+                self._animacaoEspecial = False
 
             self.image = self.spritesEspecial[int(self.atual)]
 
@@ -136,72 +136,73 @@ class Personagem(pygame.sprite.Sprite):
 
     def ataque1(self):
         print("aqui")
-        self.__animacaoParado = False
-        self.__animacaoEspecial = False
-        self.__animacaoAtaque1 = True
-        self.__animacaoParado = False
-        self.__animacaoCorrendo = False
-        self.__animacaoCorrendoE = False
-        self.__animacaoPulo = False
+        self._animacaoParado = False
+        self._animacaoEspecial = False
+        self._animacaoAtaque1 = True
+        self._animacaoParado = False
+        self._animacaoCorrendo = False
+        self._animacaoCorrendoE = False
+        self._animacaoPulo = False
 
     def corre(self):
-        self.__animacaoParado = False
-        self.__animacaoAtaque1 = False
-        self.__animacaoParado = False
-        self.__animacaoEspecial = False
-        self.__animacaoCorrendo = False
-        self.__animacaoCorrendoE = False
+        self._animacaoParado = False
+        self._animacaoAtaque1 = False
+        self._animacaoParado = False
+        self._animacaoEspecial = False
+        self._animacaoCorrendo = False
+        self._animacaoCorrendoE = False
 
         if self.rect.x <= 740:
-            self.__animacaoCorrendo = True
-        self.__animacaoPulo = False
+            self._animacaoCorrendo = True
+        self._animacaoPulo = False
 
 
     def correE(self):
-        self.__animacaoParado = False
-        self.__animacaoEspecial = False
-        self.__animacaoAtaque1 = False
-        self.__animacaoParado = False
-        self.__animacaoCorrendo = False
+        self._animacaoParado = False
+        self._animacaoEspecial = False
+        self._animacaoAtaque1 = False
+        self._animacaoParado = False
+        self._animacaoCorrendo = False
 
         if self.rect.x >= 0:
-            self.__animacaoCorrendoE = True
-        self.__animacaoPulo = False
+            self._animacaoCorrendoE = True
+        self._animacaoPulo = False
 
 
     def paraDeCorrer(self):
-        self.__animacaoParado = False
-        self.__animacaoAtaque1 = False
-        self.__animacaoParado = True
-        self.__animacaoEspecial = False
-        self.__animacaoCorrendo = False
-        self.__animacaoCorrendoE = False
+        self._animacaoParado = False
+        self._animacaoAtaque1 = False
+        self._animacaoParado = True
+        self._animacaoEspecial = False
+        self._animacaoCorrendo = False
+        self._animacaoCorrendoE = False
 
         self.desacelera()
 
 
     def paraDeCorrerE(self):
-        self.__animacaoParado = False
-        self.__animacaoAtaque1 = False
-        self.__animacaoEspecial = False
-        self.__animacaoParado = True
-        self.__animacaoCorrendo = False
-        self.__animacaoCorrendoE = False
+        self._animacaoParado = False
+        self._animacaoAtaque1 = False
+        self._animacaoEspecial = False
+        self._animacaoParado = True
+        self._animacaoCorrendo = False
+        self._animacaoCorrendoE = False
 
         self.desacelera()
 
     def pula(self):
-        self.__animacaoParado = False
-        self.__animacaoAtaque1 = False
-        self.__animacaoEspecial = False
-        self.__animacaoCorrendo = False
-        self.__animacaoCorrendoE = False
-        self.__animacaoPulo = True
+        self._animacaoParado = False
+        self._animacaoAtaque1 = False
+        self._animacaoEspecial = False
+        self._animacaoCorrendo = False
+        self._animacaoCorrendoE = False
+        self._animacaoPulo = True
 
     def ataqueEspecial(self):
-        self.__animacaoParado = False
-        self.__animacaoAtaque1 = False
-        self.__animacaoEspecial = True
-        self.__animacaoCorrendo = False
-        self.__animacaoCorrendoE = False
-        self.__animacaoPulo = False
+        self._animacaoParado = False
+        self._animacaoAtaque1 = False
+        self._animacaoEspecial = True
+        self._animacaoCorrendo = False
+        self._animacaoCorrendoE = False
+        self._animacaoPulo = False
+

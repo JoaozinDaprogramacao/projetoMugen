@@ -1,5 +1,5 @@
 import pygame
-from Models.Personagem import Personagem
+from Models.personagens.Personagem import Personagem
 
 class Bils(Personagem):
     def __transforma_mult(self, indice, image):
