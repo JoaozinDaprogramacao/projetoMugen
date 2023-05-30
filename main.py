@@ -13,6 +13,7 @@ drawGroup = pygame.sprite.Group()
 life = Life(drawGroup)
 
 p1: Personagem = None
+p2: Personagem = None
 
 background = pygame.image.load("sprite/hCUwLQ.png")
 
@@ -31,11 +32,12 @@ velocidade = 10
 anima_entrada_value = True
 
 if __name__ == "__main__":
-    logica = Logica_Escolha(p1, drawGroup)
+    logica = Logica_Escolha(p1, p2, drawGroup)
     janelaEscola = Window(logica)
     janelaEscola.run()
 
     p1 = logica.get_p1()
+    p2 = logica.get_p2()
 
     endereco_p1, endereco_p2 = logica.get_logs_p1_p2()
 

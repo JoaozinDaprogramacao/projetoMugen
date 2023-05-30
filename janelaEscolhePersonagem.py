@@ -72,22 +72,22 @@ class Window:
 
 
     def indicador_personagem(self):
-        if self.__logica.get_escolha() == PersonagensEnum.Hashirama.value:
+        if self.__logica.get_escolha_p1() == PersonagensEnum.Hashirama.value:
             indicator_rect = self.hashirama.rect.inflate(10, 10)
             pygame.draw.rect(self.window, (255, 0, 0), indicator_rect, 3)
-        elif self.__logica.get_escolha() == PersonagensEnum.Sasuke.value:
+        elif self.__logica.get_escolha_p1() == PersonagensEnum.Sasuke.value:
             indicator_rect = self.sasuke.rect.inflate(10, 10)
             pygame.draw.rect(self.window, (255, 0, 0), indicator_rect, 3)
 
     def teclas_input(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
-            self.__logica.set_escolha(PersonagensEnum.Hashirama.value)
+            self.__logica.set_escolha_p1(PersonagensEnum.Hashirama.value)
         elif keys[pygame.K_RIGHT]:
-            self.__logica.set_escolha(PersonagensEnum.Sasuke.value)
+            self.__logica.set_escolha_p1(PersonagensEnum.Sasuke.value)
         elif keys[pygame.K_RETURN]:
-            if self.__logica.get_escolha():
-                print("Personagem selecionado:", self.__logica.get_escolha())
+            if self.__logica.get_escolha_p1():
+                print("Personagem selecionado:", self.__logica.get_escolha_p1())
                 self.__logica.press_enter()
                 self.running = False
 
@@ -100,7 +100,7 @@ class Window:
         texto_imagem = self.__fonte.render(p1_nome, True, (0, 0, 0))
         self.window.blit(texto_imagem, (15, 15))
 
-        self.__update_display_p1(self.__logica.get_escolha())
+        self.__update_display_p1(self.__logica.get_escolha_p1())
 
 
         pygame.draw.rect(self.window, (0, 0, 0), (840 - 275 - 10 - 5, 65, 285, 410), 5)
@@ -149,7 +149,7 @@ class Window:
 
 
             self.__desenha_display_escolha(
-                self.__convert_enum_personagem_to_string(self.__logica.get_escolha())
+                self.__convert_enum_personagem_to_string(self.__logica.get_escolha_p1())
             )
 
             self.drawGroup.draw(self.window)
