@@ -2,9 +2,9 @@ from Models.personagens.Personagem import Personagem
 from Models.projeteis.Projeteis import Projetil
 
 class Personagem_com_Projetil(Personagem):
-    def __init__(self, projetil, indice_parado, sprites_parado, sprites_ataque, sprites_correndo, sprites_pulo,
+    def __init__(self, player,projetil, indice_parado, sprites_parado, sprites_ataque, sprites_correndo, sprites_pulo,
                  sprites_especial, ground, *groups):
-        super().__init__(indice_parado, sprites_parado, sprites_ataque, sprites_correndo, sprites_pulo,
+        super().__init__(player, indice_parado, sprites_parado, sprites_ataque, sprites_correndo, sprites_pulo,
                          sprites_especial, ground, *groups)
 
 

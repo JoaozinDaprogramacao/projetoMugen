@@ -1,4 +1,5 @@
 from enums.PersonagensEnum import PersonagensEnum
+from enums.Players import Players
 from Models.personagens.Hashirama import Hashirama
 from Models.personagens.Bils import Bils
 
@@ -31,22 +32,22 @@ class Logica_Escolha:
     def get_p1(self):
         if self.__press_enter:
             if self.__escolha_p1 == PersonagensEnum.Hashirama.value:
-                self.__p1 = Hashirama(self.__drawGroup)
+                self.__p1 = Hashirama(self.__drawGroup, player = Players.p1.value)
 
             elif self.__escolha_p1 == PersonagensEnum.Sasuke.value:
-                self.__p1 = Bils(self.__drawGroup)
+                self.__p1 = Bils(self.__drawGroup, player = Players.p1.value)
 
             return self.__p1
 
     def get_p2(self):
         if self.__press_enter:
             if self.__escolha_p2 == PersonagensEnum.Hashirama.value:
-                self.__p2 = Hashirama(self.__drawGroup)
+                self.__p2 = Hashirama(self.__drawGroup, player = Players.p2.value)
 
             elif self.__escolha_p2 == PersonagensEnum.Sasuke.value:
-                self.__p2 = Bils(self.__drawGroup)
+                self.__p2 = Bils(self.__drawGroup, player = Players.p2.value)
 
-            return self.__p2
+            return  self.__p2
 
     def get_logs_p1_p2(self):
         if self.__press_enter:

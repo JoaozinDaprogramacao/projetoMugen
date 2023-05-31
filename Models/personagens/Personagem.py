@@ -1,11 +1,12 @@
 import pygame
-
+from enums.Players import Players
 
 class Personagem(pygame.sprite.Sprite):
-    def __init__(self, indice_parado, sprites_parado, sprites_ataque, sprites_correndo, sprites_pulo, sprites_especial, ground, *groups):
+    def __init__(self, player, indice_parado, sprites_parado, sprites_ataque, sprites_correndo, sprites_pulo, sprites_especial, ground, *groups):
         super().__init__(*groups)
+
         self.__indice_parado = indice_parado
-        print(f"indice parado: {self.__indice_parado}")
+
         self.__ground = ground
         self.spritesParado = sprites_parado
         self.spritesAtaque1 = sprites_ataque
@@ -13,11 +14,17 @@ class Personagem(pygame.sprite.Sprite):
         self.spritesPulo = sprites_pulo
         self.spritesEspecial = sprites_especial
 
+        self._player = player
+
         self.atual = 0
         self.image = self.spritesParado[self.atual]
         self.rect = self.image.get_rect()
 
-        self.rect = pygame.Rect(50, self.__ground, 100, 100)
+        if player == Players.p1.value:
+            self.rect = pygame.Rect(50, self.__ground, 100, 100)
+
+        elif player == Players.p2.value:
+            self.rect = pygame.Rect(650, self.__ground, 100, 100)
         self.__x_velocidade = 0
         self.__y_velocidade = 0
 
@@ -65,7 +72,11 @@ class Personagem(pygame.sprite.Sprite):
     def _exibeAnimacaoAtaque1(self):
         if self._animacaoAtaque1 == True:
             self.atual += 0.2
-            self.__x_velocidade = 3
+            print(self._player)
+            if self._player == Players.p2.value:
+                self.__x_velocidade = -3
+            else:
+                self.__x_velocidade = 3
             if self.atual >= len(self.spritesAtaque1):
                 self.atual = 0
                 self.__x_velocidade = 0
@@ -206,3 +217,5 @@ class Personagem(pygame.sprite.Sprite):
         self._animacaoCorrendoE = False
         self._animacaoPulo = False
 
+    def nao_esta_correndo(self):
+        return self.__x_velocidade == 0

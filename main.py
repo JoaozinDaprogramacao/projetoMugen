@@ -4,6 +4,7 @@ from Models.personagens.Personagem import Personagem
 from janelaEscolhePersonagem import Window
 from abstracoes.animacaoEntrada import anima_entrada
 from abstracoes.personagens.logicaEscolha import Logica_Escolha
+from abstracoes.controle_personagem import *
 
 display = pygame.display.set_mode([840, 480])
 pygame.display.set_caption("projeto mugen")
@@ -63,33 +64,8 @@ if __name__ == "__main__":
                 if event.type == pygame.QUIT:
                     gameLoop = False
 
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RIGHT:
-                        p1.corre()
-
-                    if event.key == pygame.K_LEFT:
-                        p1.correE()
-
-                    if event.key == pygame.K_z:
-                        p1.ataque1()
-
-                    if event.key == pygame.K_x:
-                        keys = pygame.key.get_pressed()
-                        if not (keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]):
-                            p1.ataqueEspecial()
-
-                    if event.key == pygame.K_SPACE:
-                        keys = pygame.key.get_pressed()
-                        if not (keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]):
-                            p1.pula()
-
-                elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_RIGHT:
-                        p1.paraDeCorrer()
-
-                    if event.key == pygame.K_LEFT:
-                        p1.paraDeCorrerE()
-
+                controla_p1(event, p1)
+                controla_p2(event, p2)
         faixa_x, anima_entrada_value = anima_entrada(faixa_x, faixa_y,
                                                      anima_entrada_value, velocidade, preto, display,
                                                      img_p1_selec, img_p2_selec)
